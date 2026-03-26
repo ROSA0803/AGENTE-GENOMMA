@@ -37,7 +37,7 @@ export default function App() {
 
   async function cargarTodo() {
     try {
-      const resDocs = await fetch("http://localhost:4000/api/documents");
+      const resDocs = await fetch("https://agente-genomma-2.onrender.com/api/documents");
       const dataDocs = await resDocs.json();
       setDocuments(dataDocs.documents || []);
       setSummary(
@@ -51,11 +51,11 @@ export default function App() {
         }
       );
 
-      const resNoti = await fetch("http://localhost:4000/api/notifications");
+      const resNoti = await fetch("https://agente-genomma-2.onrender.com/api/notifications");
       const dataNoti = await resNoti.json();
       setNotifications(dataNoti || []);
 
-      const resLogs = await fetch("http://localhost:4000/api/email-logs");
+      const resLogs = await fetch("https://agente-genomma-2.onrender.com/api/email-logs");
       const dataLogs = await resLogs.json();
       setEmailLogs(dataLogs || []);
     } catch (error) {
@@ -84,8 +84,8 @@ export default function App() {
       if (form.wordFile) formData.append("wordFile", form.wordFile);
 
       const url = modoEdicion
-        ? `http://localhost:4000/api/documents/${form.id}`
-        : "http://localhost:4000/api/documents";
+        ? `https://agente-genomma-2.onrender.com/api/documents/${form.id}`
+        : "https://agente-genomma-2.onrender.com/api/documents";
 
       const method = modoEdicion ? "PUT" : "POST";
 
@@ -131,7 +131,7 @@ export default function App() {
     if (!confirmar) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/api/documents/${id}`, {
+      const res = await fetch(`https://agente-genomma-2.onrender.com/api/documents/${id}`, {
         method: "DELETE"
       });
 
@@ -146,7 +146,7 @@ export default function App() {
 
   async function enviarCorreos() {
     try {
-      const res = await fetch("http://localhost:4000/api/send-emails", {
+      const res = await fetch("https://agente-genomma-2.onrender.com/api/send-emails", {
         method: "POST"
       });
 
@@ -450,7 +450,7 @@ export default function App() {
                         className="file-btn"
                         href={
                           doc.pdf.startsWith("/uploads/")
-                            ? `http://localhost:4000${doc.pdf}`
+                            ? `https://agente-genomma-2.onrender.com${doc.pdf}`
                             : `file:///${doc.pdf.replaceAll("\\", "/")}`
                         }
                         target="_blank"
@@ -469,7 +469,7 @@ export default function App() {
                           className="file-btn"
                           href={
                             doc.editable.startsWith("/uploads/")
-                              ? `http://localhost:4000${doc.editable}`
+                              ? `https://agente-genomma-2.onrender.com${doc.editable}`
                               : `file:///${doc.editable.replaceAll("\\", "/")}`
                           }
                           target="_blank"
