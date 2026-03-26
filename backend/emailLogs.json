@@ -1,0 +1,102 @@
+[
+  {
+    "codigo": "PNO-CAL-001-V01",
+    "nombre": "Elaboración de procedimientos normalizado de operación",
+    "area": "Calidad",
+    "tipoAviso": "Último aviso",
+    "fechaVencimiento": "2026-03-25",
+    "responsable": "Rosa Ariana Almazan Flores ",
+    "backup": "Graciela Flores Flores",
+    "correoResponsable": "v.almazanf@gmail.com",
+    "correoBackup": "floresariaana@gmail.com",
+    "destinatarios": [
+      "v.almazanf@gmail.com",
+      "floresariaana@gmail.com"
+    ],
+    "enviado": true,
+    "omitido": false,
+    "motivo": "Correo enviado correctamente con Word adjunto",
+    "modo": "edicion",
+    "fechaEnvio": "2026-03-25 20:18:10"
+  },
+  {
+    "codigo": "PNO-CAL-001-V01",
+    "nombre": "Elaboración de procedimientos normalizado de operación",
+    "area": "Calidad",
+    "tipoAviso": "Último aviso",
+    "fechaVencimiento": "2026-03-25",
+    "responsable": "Rosa Ariana Almazan Flores ",
+    "backup": "Graciela Flores Flores",
+    "correoResponsable": "v.almazanf@gmail.com",
+    "correoBackup": "floresariaana@gmail.com",
+    "destinatarios": [
+      "v.almazanf@gmail.com",
+      "floresariaana@gmail.com"
+    ],
+    "enviado": true,
+    "omitido": false,
+    "motivo": "Correo enviado correctamente con Word adjunto",
+    "modo": "edicion",
+    "fechaEnvio": "2026-03-25 20:18:08"
+  },
+  {
+    "codigo": "PNO-CAL-001-V01",
+    "nombre": "Elaboración de procedimientos normalizado de operación",
+    "area": "Calidad",
+    "tipoAviso": "Documento vencido",
+    "fechaVencimiento": "2025-03-25",
+    "responsable": "Rosa Ariana Almazan Flores ",
+    "backup": "Graciela Flores Flores",
+    "correoResponsable": "v.almazanf@gmail.com",
+    "correoBackup": "floresariaana@gmail.com",
+    "destinatarios": [
+      "v.almazanf@gmail.com",
+      "floresariaana@gmail.com"
+    ],
+    "enviado": true,
+    "omitido": false,
+    "motivo": "Correo enviado correctamente con Word adjunto",
+    "modo": "alta",
+    "fechaEnvio": "2026-03-25 20:15:47"
+  },
+  {
+    "codigo": "PNO-CAL-001-V011",
+    "nombre": "Metformina",
+    "area": "Calidad",
+    "tipoAviso": "Último aviso",
+    "fechaVencimiento": "2026-03-25",
+    "responsable": "Rosa Ariana Almazan Flores",
+    "backup": "Graciela Flores Flores",
+    "correoResponsable": "chiquisalmaza@gmail.com",
+    "correoBackup": "floresariaana@gmail.com",
+    "destinatarios": [
+      "chiquisalmaza@gmail.com",
+      "floresariaana@gmail.com"
+    ],
+    "enviado": false,
+    "omitido": true,
+    "motivo": "Aviso ya enviado hoy",
+    "modo": "edicion",
+    "fechaEnvio": "2026-03-25 20:05:03"
+  },
+  {
+    "codigo": "PNO-CAL-001-V011",
+    "nombre": "Metformina",
+    "area": "Calidad",
+    "tipoAviso": "Último aviso",
+    "fechaVencimiento": "2026-03-25",
+    "responsable": "Rosa Ariana Almazan Flores",
+    "backup": "Graciela Flores Flores",
+    "correoResponsable": "chiquisalmza@gmail.com",
+    "correoBackup": "floresariaana@gmail.com",
+    "destinatarios": [
+      "chiquisalmza@gmail.com",
+      "floresariaana@gmail.com"
+    ],
+    "enviado": true,
+    "omitido": false,
+    "motivo": "Correo enviado correctamente",
+    "modo": "manual",
+    "fechaEnvio": "2026-03-25 20:03:13"
+  }
+]
