@@ -797,3 +797,8 @@ app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
   console.log(`Buscando archivos en: ${DESKTOP_PNO_FOLDER}`);
 });
+
+app.delete("/api/email-logs", (req, res) => {
+  saveEmailLogs([]);
+  res.json({ ok: true, message: "Bitácora eliminada correctamente" });
+});

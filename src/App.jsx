@@ -149,6 +149,17 @@ export default function App() {
       const res = await fetch("https://agente-genomma-2.onrender.com/api/send-emails", {
         method: "POST"
       });
+      async function limpiarBitacora() {
+  const confirmar = window.confirm("¿Seguro que quieres eliminar toda la bitácora?");
+  if (!confirmar) return;
+
+  await fetch("https://agente-genomma-2.onrender.com/api/email-logs", {
+    method: "DELETE"
+  });
+
+  alert("Bitácora eliminada");
+  cargarTodo();
+}
 
       const data = await res.json();
       alert(data.message || "Proceso ejecutado");
@@ -528,6 +539,9 @@ export default function App() {
 
       <div className="card">
         <h2>Bitácora de correos enviados</h2>
+        <button onClick={limpiarBitacora}>
+  Limpiar bitácora
+</button>
 
         {emailLogs.length === 0 ? (
           <p>No hay correos registrados todavía.</p>
@@ -581,6 +595,8 @@ export default function App() {
                     <td>{log.motivo}</td>
                   </tr>
                 ))}
+
+                
               </tbody>
             </table>
           </div>
