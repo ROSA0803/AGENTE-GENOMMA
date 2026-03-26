@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
+const API_URL = "https://agente-genomma-2.onrender.com";
+
 const initialForm = {
   id: "",
   codigo: "",
@@ -37,7 +39,7 @@ export default function App() {
 
   async function cargarTodo() {
     try {
-      const resDocs = await fetch("https://agente-genomma-2.onrender.com/api/documents");
+      const resDocs = await fetch(`${API_URL}/api/documents`);
       const dataDocs = await resDocs.json();
       setDocuments(dataDocs.documents || []);
       setSummary(
@@ -51,11 +53,11 @@ export default function App() {
         }
       );
 
-      const resNoti = await fetch("https://agente-genomma-2.onrender.com/api/notifications");
+      const resNoti = await fetch(`${API_URL}/api/notifications`);
       const dataNoti = await resNoti.json();
       setNotifications(dataNoti || []);
 
-      const resLogs = await fetch("https://agente-genomma-2.onrender.com/api/email-logs");
+      const resLogs = await fetch(`${API_URL}/api/email-logs`);
       const dataLogs = await resLogs.json();
       setEmailLogs(dataLogs || []);
     } catch (error) {
@@ -84,8 +86,8 @@ export default function App() {
       if (form.wordFile) formData.append("wordFile", form.wordFile);
 
       const url = modoEdicion
-        ? `https://agente-genomma-2.onrender.com/api/documents/${form.id}`
-        : "https://agente-genomma-2.onrender.com/api/documents";
+        ? `${API_URL}/api/documents/${form.id}`
+        : `${API_URL}/api/documents`;
 
       const method = modoEdicion ? "PUT" : "POST";
 
@@ -131,7 +133,7 @@ export default function App() {
     if (!confirmar) return;
 
     try {
-      const res = await fetch(`https://agente-genomma-2.onrender.com/api/documents/${id}`, {
+      const res = await fetch(`${API_URL}/api/documents/${id}`, {
         method: "DELETE"
       });
 
@@ -146,20 +148,9 @@ export default function App() {
 
   async function enviarCorreos() {
     try {
-      const res = await fetch("https://agente-genomma-2.onrender.com/api/send-emails", {
+      const res = await fetch(`${API_URL}/api/send-emails`, {
         method: "POST"
       });
-      async function limpiarBitacora() {
-  const confirmar = window.confirm("¿Seguro que quieres eliminar toda la bitácora?");
-  if (!confirmar) return;
-
-  await fetch("https://agente-genomma-2.onrender.com/api/email-logs", {
-    method: "DELETE"
-  });
-
-  alert("Bitácora eliminada");
-  cargarTodo();
-}
 
       const data = await res.json();
       alert(data.message || "Proceso ejecutado");
@@ -167,6 +158,24 @@ export default function App() {
     } catch (error) {
       console.error("Error enviando correos:", error);
       alert("No se pudieron enviar los correos");
+    }
+  }
+
+  async function limpiarBitacora() {
+    const confirmar = window.confirm("¿Seguro que quieres eliminar toda la bitácora?");
+    if (!confirmar) return;
+
+    try {
+      const res = await fetch(`${API_URL}/api/email-logs`, {
+        method: "DELETE"
+      });
+
+      const data = await res.json();
+      alert(data.message || "Bitácora eliminada");
+      cargarTodo();
+    } catch (error) {
+      console.error("Error limpiando bitácora:", error);
+      alert("No se pudo limpiar la bitácora");
     }
   }
 
@@ -209,13 +218,7 @@ export default function App() {
     return documents.filter((doc) => {
       const matchSearch =
         !filters.search ||
-        [
-          doc.codigo,
-          doc.nombre,
-          doc.area,
-          doc.responsable,
-          doc.backup
-        ]
+        [doc.codigo, doc.nombre, doc.area, doc.responsable, doc.backup]
           .join(" ")
           .toLowerCase()
           .includes(filters.search.toLowerCase());
@@ -461,7 +464,7 @@ export default function App() {
                         className="file-btn"
                         href={
                           doc.pdf.startsWith("/uploads/")
-                            ? `https://agente-genomma-2.onrender.com${doc.pdf}`
+                            ? `${API_URL}${doc.pdf}`
                             : `file:///${doc.pdf.replaceAll("\\", "/")}`
                         }
                         target="_blank"
@@ -480,7 +483,7 @@ export default function App() {
                           className="file-btn"
                           href={
                             doc.editable.startsWith("/uploads/")
-                              ? `https://agente-genomma-2.onrender.com${doc.editable}`
+                              ? `${API_URL}${doc.editable}`
                               : `file:///${doc.editable.replaceAll("\\", "/")}`
                           }
                           target="_blank"
@@ -539,9 +542,12 @@ export default function App() {
 
       <div className="card">
         <h2>Bitácora de correos enviados</h2>
-        <button onClick={limpiarBitacora}>
-  Limpiar bitácora
-</button>
+
+        <div style={{ marginBottom: "12px" }}>
+          <button className="secondary-btn" onClick={limpiarBitacora}>
+            Limpiar bitácora
+          </button>
+        </div>
 
         {emailLogs.length === 0 ? (
           <p>No hay correos registrados todavía.</p>
@@ -595,8 +601,6 @@ export default function App() {
                     <td>{log.motivo}</td>
                   </tr>
                 ))}
-
-                
               </tbody>
             </table>
           </div>
